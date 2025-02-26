@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<ul class="list-articles">
+	{% if cat_id %}
+	<h1><b><i>{{ cat_id }}</i></b></h1>
+	{% endif %}
+	{% for p in posts %}
+	{% if p.is_public %}
+			<li><h2>{{p.title}}</h2>
+	{{p.content|linebreaks|truncatewords:40}}
+			<div class="clear"></div>
+			<p class="link-read-post"><a href="{% url 'post' p.id %}">Читать пост</a></p>
+			</li>
+	{% endif %}
+	{% endfor %}
+</ul>
+{% endblock %}
